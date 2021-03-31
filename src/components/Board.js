@@ -5,7 +5,9 @@ const Board = ({ boardSize, colors}) => {
     const pickRandomColor = () => {
         return colors[Math.floor(Math.random() * colors.length)];
     }
-    const [boardGrid, changeBoard] = useState([])
+    const [boardGrid, changeBoard] = useState([]);
+    let scoreCard = 0;
+    const [score,changeScore] = useState(0);
     const fillBoardRandomColor = (fillBoard) => {
 
         return fillBoard.map((row,rowIndex) => {
@@ -35,7 +37,9 @@ const Board = ({ boardSize, colors}) => {
                     col4 = board[m][i + 3][`${m}-${i + 2}-backgroundImage`];
                 }
                 if(col1 === col2 && (col2 === col3) && col1 !== '') {
+                    scoreCard +=3
                     if(col3 === col4 ) {
+                        scoreCard +=1
                         board[m][i + 3][`${m}-${i + 3}-isActive`] = false;
                         board[m][i + 3][`${m}-${i + 3}-backgroundImage`] = '';
                     }
@@ -62,7 +66,9 @@ const Board = ({ boardSize, colors}) => {
                         row4 = board[k + 3][j][`${k + 3}-${j}-backgroundImage`];
                     }
                     if(row1 === row2 && (row2 === row3) && row1 !== '') {
+                        scoreCard +=3
                         if(row3 == row4) {
+                            scoreCard +=1
                             board[k + 3][j][`${k + 3}-${j}-isActive`] = false;
                             board[k + 3][j][`${k + 3}-${j}-backgroundImage`] = '';
                         }
@@ -96,6 +102,9 @@ const Board = ({ boardSize, colors}) => {
             }
         }
         if(m === board.length - 1) {
+            let prevScore = score;
+            prevScore += scoreCard
+            changeScore(prevScore)
             changeBoard(board);
         } else {
             // recursion
@@ -126,6 +135,7 @@ const Board = ({ boardSize, colors}) => {
                     )
                 })
             }
+            <div className="score-count">score: {score}</div>
         </div>
     )
 }
