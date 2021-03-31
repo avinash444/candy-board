@@ -1,23 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Board from './components/Board';
+import yellowcandy from './images/yellow-candy.png';
+import redcandy from './images/red-candy.png';
+import orangecandy from './images/orange-candy.png';
+import purplecandy from './images/purple-candy.png';
+import greencandy from './images/green-candy.png';
+import bluecandy from './images/blue-candy.png';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Board boardSize={10} colors={[yellowcandy,redcandy,orangecandy,purplecandy,greencandy,bluecandy]} />
     </div>
   );
 }
